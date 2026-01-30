@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bo3zh3 Mod Store - Download</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Teko:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #c9a962;
+            --gold-dark: #a08339;
+            --bg: #0a0a0a;
+            --card: #1c1c1e;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--bg);
+            font-family: 'Rajdhani', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--gold);
+            opacity: 0.3;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(180deg, rgba(10,10,10,0.95) 0%, transparent 100%);
+        }
+
+        .nav-logo {
+            font-family: 'Teko', sans-serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 4px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #888;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 2px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--gold); }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 50px;
+            position: relative;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            max-width: 1200px;
+            z-index: 10;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border: 1px solid var(--gold);
+            font-family: 'Teko', sans-serif;
+            font-size: 14px;
+            color: var(--gold);
+            letter-spacing: 4px;
+            margin-bottom: 25px;
+        }
+
+        .hero-title {
+            font-family: 'Teko', sans-serif;
+            font-size: 72px;
+            font-weight: 600;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        .hero-title span { color: var(--gold); }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: #888;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .hero-features {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            color: #aaa;
+        }
+
+        .hero-feature span {
+            font-size: 24px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            font-family: 'Teko', sans-serif;
+            font-size: 18px;
+            letter-spacing: 3px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 30px rgba(201, 169, 98, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gold);
+            color: #000;
+        }
+
+        /* Phone Mockup */
+        .hero-phone {
+            position: relative;
+        }
+
+        .phone-frame {
+            width: 300px;
+            height: 620px;
+            background: #1c1c1e;
+            border-radius: 45px;
+            padding: 10px;
+            box-shadow: 
+                0 0 0 2px #3a3a3c,
+                0 50px 100px rgba(0, 0, 0, 0.5),
+                0 0 100px rgba(201, 169, 98, 0.15);
+            animation: phoneFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes phoneFloat {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-20px) rotate(-5deg); }
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border-radius: 38px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 30px;
+            background: #000;
+            border-radius: 15px;
+            z-index: 10;
+        }
+
+        .phone-content {
+            padding: 50px 15px 15px;
+            height: 100%;
+        }
+
+        .phone-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .phone-logo {
+            width: 35px;
+            height: 35px;
+            background: var(--gold);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            color: #000;
+        }
+
+        .phone-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .phone-title span { color: var(--gold); }
+
+        .phone-card {
+            background: #1c1c1e;
+            border-radius: 14px;
+            padding: 15px;
+            margin-bottom: 12px;
+        }
+
+        .phone-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .phone-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .phone-card-title {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .phone-card-desc {
+            font-size: 11px;
+            color: #888;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-family: 'Teko', sans-serif;
+            font-size: 48px;
+            letter-spacing: 5px;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #888;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(201, 169, 98, 0.3);
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-family: 'Teko', sans-serif;
+            font-size: 24px;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .feature-desc {
+            font-size: 15px;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        /* Download Section */
+        .download {
+            padding: 100px 50px;
+            text-align: center;
+            background: linear-gradient(180deg, transparent 0%, rgba(201, 169, 98, 0.05) 50%, transparent 100%);
+        }
+
+        .download-title {
+            font-family: 'Teko', sans-serif;
+            font-size: 48px;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+        }
+
+        .download-subtitle {
+            font-size: 18px;
+            color: #888;
+            margin-bottom: 40px;
+        }
+
+        .download-options {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .download-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 40px;
+            width: 280px;
+            border: 1px solid rgba(201, 169, 98, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .download-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .download-card-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .download-card-title {
+            font-family: 'Teko', sans-serif;
+            font-size: 24px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .download-card-desc {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 25px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px;
+            text-align: center;
+            border-top: 1px solid rgba(201, 169, 98, 0.1);
+        }
+
+        .footer-logo {
+            font-family: 'Teko', sans-serif;
+            font-size: 28px;
+            color: var(--gold);
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .footer-text span { color: var(--gold); }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-features {
+                justify-content: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 20px;
+            }
+
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .features {
+                padding: 60px 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .download {
+                padding: 60px 20px;
+            }
+
+            .download-options {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Nav -->
+    <nav>
+        <a href="#" class="nav-logo">BO3ZH3 MODS</a>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#download">Download</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">VERSION 3.0</div>
+                <h1 class="hero-title">BO3ZH3 <span>MOD STORE</span></h1>
+                <p class="hero-subtitle">The ultimate mod store for iOS. Premium tweaks, game mods, and tools - all in one place. No jailbreak required.</p>
+                
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        <span>📱</span> 100+ Mods
+                    </div>
+                    <div class="hero-feature">
+                        <span>🔄</span> Auto Updates
+                    </div>
+                    <div class="hero-feature">
+                        <span>🛡️</span> Anti-Revoke
+                    </div>
+                </div>
+
+                <div class="hero-buttons">
+                    <a href="index.html" class="btn btn-primary">OPEN WEB APP</a>
+                    <a href="#download" class="btn btn-secondary">DOWNLOAD IPA</a>
+                </div>
+            </div>
+
+            <div class="hero-phone">
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <div class="phone-notch"></div>
+                        <div class="phone-content">
+                            <div class="phone-header">
+                                <div class="phone-logo">B3</div>
+                                <div class="phone-title">BO3ZH3 <span>MODS</span></div>
+                            </div>
+                            
+                            <div class="phone-card">
+                                <div class="phone-card-header">
+                                    <div class="phone-card-icon" style="background: linear-gradient(145deg, #30d158, #28a745);">📸</div>
+                                    <div>
+                                        <div class="phone-card-title">SnapGod++</div>
+                                        <div class="phone-card-desc">Ghost mode, Save stories</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="phone-card">
+                                <div class="phone-card-header">
+                                    <div class="phone-card-icon" style="background: linear-gradient(145deg, #ff2d55, #e0264a);">📷</div>
+                                    <div>
+                                        <div class="phone-card-title">InstaUltra</div>
+                                        <div class="phone-card-desc">Download reels, No ads</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="phone-card">
+                                <div class="phone-card-header">
+                                    <div class="phone-card-icon" style="background: linear-gradient(145deg, #30b0c7, #2899ad);">💬</div>
+                                    <div>
+                                        <div class="phone-card-title">WhatsApp++</div>
+                                        <div class="phone-card-desc">Anti-delete, Hide online</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="phone-card">
+                                <div class="phone-card-header">
+                                    <div class="phone-card-icon" style="background: linear-gradient(145deg, #ff9f0a, #e68a00);">🎯</div>
+                                    <div>
+                                        <div class="phone-card-title">PUBG Mod</div>
+                                        <div class="phone-card-desc">Aimbot, ESP, No recoil</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="section-header">
+            <h2 class="section-title">FEATURES</h2>
+            <p class="section-subtitle">Everything you need in one powerful app</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎮</div>
+                <h3 class="feature-title">GAME MODS</h3>
+                <p class="feature-desc">Premium game modifications for PUBG, COD, Clash Royale, and more. Unlock unlimited resources and features.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3 class="feature-title">APP TWEAKS</h3>
+                <p class="feature-desc">Enhanced versions of your favorite apps. Snapchat++, Instagram++, WhatsApp++ with premium features unlocked.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">PERFORMANCE</h3>
+                <p class="feature-desc">Boost your device speed, save battery, and clean cache with our powerful optimization tools.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3 class="feature-title">THEMES</h3>
+                <p class="feature-desc">Customize your device with beautiful themes, icon packs, and fonts. Make your iPhone unique.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔓</div>
+                <h3 class="feature-title">PREMIUM UNLOCK</h3>
+                <p class="feature-desc">Unlock premium features in apps without paying. Spotify Premium, YouTube Premium, and more.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3 class="feature-title">SECURITY</h3>
+                <p class="feature-desc">Built-in VPN, ad blocker, and app locker to keep your device secure and private.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download -->
+    <section class="download" id="download">
+        <h2 class="download-title">GET STARTED</h2>
+        <p class="download-subtitle">Choose your preferred installation method</p>
+
+        <div class="download-options">
+            <div class="download-card">
+                <div class="download-card-icon">🌐</div>
+                <h3 class="download-card-title">WEB APP</h3>
+                <p class="download-card-desc">Use directly in your browser. No installation required. Works on any device.</p>
+                <a href="index.html" class="btn btn-primary">OPEN NOW</a>
+            </div>
+
+            <div class="download-card">
+                <div class="download-card-icon">📥</div>
+                <h3 class="download-card-title">SIDELOAD</h3>
+                <p class="download-card-desc">Download IPA and install with Sideloadly or AltStore. Full native experience.</p>
+                <button class="btn btn-secondary" onclick="alert('IPA Coming Soon!')">DOWNLOAD IPA</button>
+            </div>
+
+            <div class="download-card">
+                <div class="download-card-icon">➕</div>
+                <h3 class="download-card-title">ADD TO HOME</h3>
+                <p class="download-card-desc">Add the web app to your home screen for a native app-like experience.</p>
+                <button class="btn btn-secondary" onclick="alert('Open in Safari → Share → Add to Home Screen')">HOW TO ADD</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-logo">BO3ZH3 MODS</div>
+        <p class="footer-text">© 2024 Bo3zh3 | Hack to <span>Protect</span>, Learn to <span>Secure</span></p>
+    </footer>
+
+    <script>
+        // Particles
+        const particles = document.getElementById('particles');
+        for(let i = 0; i < 30; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDelay = Math.random() * 15 + 's';
+            p.style.animationDuration = (10 + Math.random() * 10) + 's';
+            particles.appendChild(p);
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(a.getAttribute('href'));
+                if(target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+
+</body>
+</html>
